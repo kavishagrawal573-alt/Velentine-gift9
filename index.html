@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Babyyy </title>
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#1a0008,#330014,#4d001a);
+  color:white;
+  overflow:hidden;
+}
+.page{
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.6s ease, transform 0.6s ease;
+  transform:scale(0.95);
+}
+.page.active{
+  opacity:1;
+  visibility:visible;
+  transform:scale(1);
+}
+button{
+  padding:12px 28px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  background:#ff0066;
+  color:white;
+  box-shadow:0 0 15px #ff1a75;
+  margin:10px;
+  transition:0.3s;
+}
+button:hover{ transform:scale(1.1); }
+.letter{
+  width:80%;
+  max-width:650px;
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 0 20px #ff1a75;
+  text-align:left;
+  overflow-y:auto;
+  max-height:60vh;
+}
+.polaroid{
+  background:white;
+  color:black;
+  padding:12px;
+  width:260px;
+  box-shadow:0 0 25px hotpink;
+  transform:rotate(-2deg);
+  margin:auto;
+}
+.polaroid img{ width:100%; }
+.heart{
+  font-size:120px;
+  cursor:pointer;
+  animation:beat 1s infinite;
+}
+@keyframes beat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+.floating{
+  position:absolute;
+  font-size:25px;
+  animation:float 8s linear infinite;
+  opacity:0.8;
+  pointer-events:none;
+}
+@keyframes float{
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-10vh);}
+}
+#noBtn{ position:relative; }
+</style>
+</head>
+<body>
+
+<!-- MUSIC -->
+<audio id="bgSong" src="song.mp3" loop></audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+<h1>Will You Be My Valentine Babyyy? </h1>
+<div>
+<button onclick="playSongAndNext(2)">Yes </button>
+<button id="noBtn" onmouseover="moveNo()">No </button>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+<h1>Click To Open My Heart </h1>
+<div style="font-size:90px;cursor:pointer;" onclick="nextPage(3)"></div>
+</div>
+
+<!-- PAGE 3 LETTER -->
+<div class="page" id="page3">
+<h2>For You </h2>
+<div class="letter">
+Heyy babyy i lovee youu so happy Valentine day   
+u know you are very special to me  ur my world   
+when you are with me everything is good no matter who is with me or not i just want you  
+after so many breakups patchups misunderstandings at the end we are together  
+sometimes i dont believe that you really love me   
+i know i am very stubborn but you handle my tantrums hehe  
+i know many people dont like you but idc yrr i love you and for me ur the bestt   
+just give me some of your time  because with your fun and drama i forget all my stress  
+ur my safest place in front of whom i dont have to pretend anything you accept me the way i am   
+so just dont leave me and if i go hold me back because i cant live without you  
+<br><br>
+I lovee you soo much
+</div>
+<button onclick="nextPage(4)">Next </button>
+</div>
+
+<!-- PAGE 4 DAYS -->
+<div class="page" id="page4">
+<h2>Days Together </h2>
+<h3>Since 10 Jan 2026</h3>
+<h1 id="counter"></h1>
+<button onclick="nextPage(5)">Next </button>
+</div>
+
+<!-- PAGE 5 HEART -->
+<div class="page" id="page5">
+<h1>Touch My Heart </h1>
+<div class="heart" onclick="document.getElementById('heartNote').style.display='block'"></div>
+<p id="heartNote" style="display:none;">
+THE DISTANCE IS TEMPORARY BUT MY LOVE IS PERMANENT 
+</p>
+<button onclick="nextPage(6)">Next </button>
+</div>
+
+<!-- PHOTO PAGES -->
+<div class="page" id="page6">
+<div class="polaroid"><img src="photo1.jpg"><div>Our Memory 1 </div></div>
+<button onclick="nextPage(7)">Next </button>
+</div>
+<div class="page" id="page7">
+<div class="polaroid"><img src="photo2.jpg"><div>Our Memory 2 </div></div>
+<button onclick="nextPage(8)">Next </button>
+</div>
+<div class="page" id="page8">
+<div class="polaroid"><img src="photo3.jpg"><div>Our Memory 3 </div></div>
+<button onclick="nextPage(9)">Next </button>
+</div>
+<div class="page" id="page9">
+<div class="polaroid"><img src="photo4.jpg"><div>Our Memory 4 </div></div>
+<button onclick="nextPage(10)">Next </button>
+</div>
+
+<!-- PAGE 10 PROMISE NOTE -->
+<div class="page" id="page10">
+<h1>My Promise To You </h1>
+<div class="letter">
+I promise to always stand by you, to make you smile when you’re down, 
+and to cherish every moment we spend together.   
+You are my everything, Babyyy   
+No matter the distance, my heart is always with you. 
+</div>
+<button onclick="nextPage(11)">Next </button>
+</div>
+
+<!-- PAGE 11 SECRET EMOJI -->
+<div class="page" id="page11">
+<h1>Click All Emojis </h1>
+<div style="position:relative;width:300px;height:300px;margin-top:30px;">
+<div onclick="reveal(1)" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:90px;cursor:pointer;"></div>
+<div onclick="reveal(2)" style="position:absolute;top:0;left:0;font-size:60px;cursor:pointer;"></div>
+<div onclick="reveal(3)" style="position:absolute;top:0;right:0;font-size:60px;cursor:pointer;"></div>
+<div onclick="reveal(4)" style="position:absolute;bottom:0;left:0;font-size:60px;cursor:pointer;"></div>
+<div onclick="reveal(5)" style="position:absolute;bottom:0;right:0;font-size:60px;cursor:pointer;"></div>
+</div>
+
+<div style="margin-top:30px;">
+<p id="msg1" style="display:none;">Ur my home </p>
+<p id="msg2" style="display:none;">Ur my safest place </p>
+<p id="msg3" style="display:none;">You make my heart skip a beat </p>
+<p id="msg4" style="display:none;">Ur soo cutee </p>
+<p id="msg5" style="display:none;">I wanna marry you </p>
+</div>
+
+<button id="secretNext" onclick="nextPage(12)" style="display:none;">Next </button>
+</div>
+
+<!-- PAGE 12 WHY I LOVE YOU -->
+<div class="page" id="page12">
+<h1>Why I Love You </h1>
+<div class="letter">
+I love you bcz u are the one jo mujhe har situation me samjhta h  
+kabhi mujhe judge nhi krta  
+and definitely baby ur the bestt  
+and the words cant describe how much i love you and why 
+</div>
+<button onclick="nextPage(13)">Next </button>
+</div>
+
+<!-- PAGE 13 FUTURE -->
+<div class="page" id="page13">
+<h1>Our Future Together </h1>
+<div class="letter">
+Umm !! The future i see with u woh thoda words nhi milree   
+definitely we getting married   
+living together happily  
+and havings kid's  
+aur sab jo ham kar sakte 
+</div>
+<button onclick="nextPage(14)">Next </button>
+</div>
+
+<!-- PAGE 14 HOLD HAND -->
+<div class="page" id="page14">
+<h1>Hold My Hand </h1>
+<div style="font-size:80px;"></div>
+<p>Even if I go, hold my hand and don’t let me go </p>
+<button onclick="nextPage(15)">Next </button>
+</div>
+
+<!-- PAGE 15 PROMISE COUNTDOWN -->
+<div class="page" id="page15">
+<h1>Our Forever Promise </h1>
+<h2 id="promiseCountdown"></h2>
+<button onclick="nextPage(16)">Final </button>
+</div>
+
+<!-- PAGE 16 FINAL -->
+<div class="page" id="page16">
+<h1>Forever Yours, Babyyy </h1>
+<h2>HAPPY VALENTINE DAYY</h2>
+</div>
+
+<script>
+// NEXT PAGE FUNCTION
+function nextPage(n){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("page"+n).classList.add("active");
+}
+
+// PLAY SONG AND GO NEXT
+function playSongAndNext(n){
+  const song = document.getElementById('bgSong');
+  song.play();
+  nextPage(n);
+}
+
+// MOVING NO BUTTON
+function moveNo(){
+  const btn=document.getElementById("noBtn");
+  const x=Math.random()*200-100;
+  const y=Math.random()*200-100;
+  btn.style.transform=`translate(${x}px,${y}px)`;
+}
+
+// DAYS TOGETHER
+function updateDays(){
+  const start=new Date("Jan 10, 2026");
+  const now=new Date();
+  const diff=Math.floor((now-start)/(1000*60*60*24));
+  document.getElementById("counter").innerText=
+  (diff>=0?diff:0)+" Days Together ";
+}
+setInterval(updateDays,1000);
+updateDays();
+
+// PROMISE COUNTDOWN
+function updatePromise(){
+  const start=new Date("Jan 10, 2026 00:00:00").getTime();
+  const now=new Date().getTime();
+  const diff=now-start;
+
+  if(diff<0){
+    const left=start-now;
+    const d=Math.floor(left/(1000*60*60*24));
+    document.getElementById("promiseCountdown").innerHTML=
+    "Promise starts in <br>"+d+" Days";
+  }else{
+    const d=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("promiseCountdown").innerHTML=
+    d+" Days of Forever Together ";
+  }
+}
+setInterval(updatePromise,1000);
+updatePromise();
+
+// SECRET EMOJI REVEAL
+let revealed=0;
+function reveal(n){
+  const msg=document.getElementById("msg"+n);
+  if(msg.style.display==="none"){
+    msg.style.display="block";
+    revealed++;
+  }
+  if(revealed===5){
+    document.getElementById("secretNext").style.display="inline-block";
+  }
+}
+
+// FLOATING EMOJIS
+const emojis=["","","","","","",""];
+setInterval(()=>{
+  const e=document.createElement("div");
+  e.className="floating";
+  e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"vw";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),8000);
+},700);
+</script>
+</body>
+</html>
